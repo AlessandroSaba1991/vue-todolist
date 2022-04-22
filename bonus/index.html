@@ -24,7 +24,7 @@
             <main>
                 <div class="add_todo">
                     <form action="#" method="get" @submit.prevent="add_todo">
-                        <input type="text" placeholder="Nuovo Todo" v-model="new_todo.text" minlength="3" required>
+                        <input type="text" placeholder="Nuovo Todo" v-model="new_todo.text" minlength="3" @keyup.enter required>
                         <button type="submit">Aggiungi</button>
                     </form>
                 </div>
