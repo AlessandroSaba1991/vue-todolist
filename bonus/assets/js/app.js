@@ -49,6 +49,9 @@ const app = new Vue({
                 done:false
             } 
 
+        },
+        change_done(index){
+            this.todos[index].done === true ? this.todos[index].done = false : this.todos[index].done = true
         }
     } 
 });
