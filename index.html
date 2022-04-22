@@ -29,8 +29,8 @@
                 </div>
                 <div class="list_todo">
                     <ul>
-                        <li v-for="todo in todos" :class="todo.done === true ? 'text_style' : ''">
-                            {{todo.text}}
+                        <li v-for="(todo, index) in todos" :class="todo.done === true ? 'text_style' : ''">
+                            {{todo.text}} <i @click="delete_todo(index)" class="fa-solid fa-times-circle"></i>
                         </li>
                     </ul>
                 </div>
