@@ -56,6 +56,7 @@ ul>li:last-child{
   border-radius: 0.75rem;
   padding: 1.5rem;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -66,7 +67,7 @@ ul>li:last-child{
   border-radius: 0.5rem;
   margin: 1rem;
   padding-top: 1rem;
-  width: calc(100% / 3);
+  width: calc(100% / 3 - 2rem);
 }
 
 .todo_main input{
@@ -81,4 +82,8 @@ ul>li:last-child{
 .cestino>button{
   background-color: transparent;
   border:none
+}
+
+.recupero{
+  width: 100%;
 }

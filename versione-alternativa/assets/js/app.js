@@ -88,8 +88,13 @@ const app = new Vue({
     delete_all() {
       answer = prompt("Sei sicuro di voler eliminare tutto? y/n");
       if (answer === "y") {
+        this.todos_remove.forEach(element => this.todos_invisible.push(element)) 
         this.todos_remove = [];
       }
+    },
+    recupera(){
+        this.todos_invisible.forEach(element => this.todos_remove.push(element))
+        this.todos_invisible = [];
     },
     text_modified(todo){
         alert(`Task Update! the new task is "${todo.text}"`)
