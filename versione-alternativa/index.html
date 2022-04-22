@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Todolist</title>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css'
+        integrity='sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=='
+        crossorigin='anonymous' referrerpolicy='no-referrer' />
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+
+<body>
+
+    <div id="app">
+        <div class="container">
+
+            <header>
+                <img width="300" src="./assets/img/logo.png" alt="">
+            </header>
+
+            <main>
+                <div class="add_todo">
+                    <form action="#" method="get" @submit.prevent="add_todo">
+                        <input type="text" placeholder="Nuovo Todo" v-model="new_todo.text" minlength="3" @keyup.enter
+                            required>
+                        <button type="submit">Aggiungi</button>
+                    </form>
+                </div>
+
+                <div class="list_todo">
+                    <div class="todo_main">
+
+                        <h3>Todo-list</h3>
+                        <ul v-if="todos.length > 0">
+                            <li v-for="(todo, index) in todos">
+                                <div>
+                                    {{todo.text}}
+                                </div>
+                                <div class="icon">
+                                    <i class="fa-solid fa-check-circle" @click="change_done(index)"></i>
+                                    <i @click="delete_todo(index)" class="fa-solid fa-times-circle"></i>
+                                </div>
+                            </li>
+                        </ul>
+                        <p v-else>🤪 Hai finito 🤪</p>
+
+                    </div>
+                    <div class="todo_complete">
+
+                        <h3>Complete</h3>
+                        <ul >
+                            <li v-for="(complete,index) in todos_complete">
+                                <div>{{complete.text}}</div>
+                                <div class="icon">
+                                    <i @click="todo_return(complete,index)" class="fa-solid fa-arrow-rotate-left"></i>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="todo_delete">
+
+                        <h3>Delete</h3>
+                        <ul>
+                            <li>
+
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+
+
+
+    <script src='https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js'></script>
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>
