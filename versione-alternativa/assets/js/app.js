@@ -91,6 +91,9 @@ const app = new Vue({
         this.todos_remove = [];
       }
     },
+    text_modified(todo){
+        alert(`Task Update! the new task is "${todo.text}"`)
+    },
     true_false() {
       this.todos.forEach((todo) => {
         if (todo.done === true) {

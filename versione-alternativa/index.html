@@ -36,9 +36,8 @@
                         <h3>Todo-list</h3>
                         <ul v-if="todos.length > 0">
                             <li v-for="(todo, index) in todos">
-                                <div>
-                                    {{todo.text}}
-                                </div>
+                                <input type="text" @keyup.enter="text_modified(todo)" v-model="todo.text">
+                                   
                                 <div class="icon">
                                     <i class="fa-solid fa-check-circle" @click="change_done(index)"></i>
                                     <i @click="delete_todo(index)" class="fa-solid fa-times-circle"></i>
@@ -48,7 +47,7 @@
                         <p v-else>🤪 Hai finito 🤪</p>
 
                     </div>
-                    <div class="todo_complete">
+                    <div v-if="todos_complete.length > 0" class="todo_complete">
 
                         <h3>Complete</h3>
                         <ul >
@@ -62,7 +61,7 @@
 
                     </div>
 
-                    <div class="todo_delete">
+                    <div v-if="todos_remove.length > 0" class="todo_delete">
 
                         <div class="cestino">
                             <h3>Delete</h3>
