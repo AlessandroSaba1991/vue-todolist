@@ -19,6 +19,10 @@ ul>li{
   border-bottom: 1px solid lightslategray;
 }
 
+.text_style>i{
+  text-decoration: none;
+}
+
 .container{
   margin: 2rem auto;
   width: 400px;

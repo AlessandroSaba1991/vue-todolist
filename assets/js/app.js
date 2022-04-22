@@ -37,11 +37,24 @@ const app = new Vue({
                 text:'Rotola',
                 done:false
             },
-        ]
+        ],
+        new_todo:{
+            text:'',
+            done:false
+        }
     }, 
     methods: {
         delete_todo(index){
             this.todos.splice(index,1)
+        },
+        add_todo(){
+            this.todos.push(this.new_todo)
+            this.new_todo = 
+            {
+                text:'',
+                done:false
+            } 
+
         }
     } 
 });

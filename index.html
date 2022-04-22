@@ -20,25 +20,26 @@
             <header>
                 <img width="300" src="./assets/img/logo.png" alt="">
             </header>
+
             <main>
                 <div class="add_todo">
-                    <form action="#" method="get">
-                        <input type="text" placeholder="Nuovo Todo" required>
+                    <form action="#" method="get" @submit.prevent="add_todo">
+                        <input type="text" placeholder="Nuovo Todo" v-model="new_todo.text" minlength="3" required>
                         <button type="submit">Aggiungi</button>
                     </form>
                 </div>
+                
                 <div class="list_todo">
                     <ul>
-                        <li v-for="(todo, index) in todos" :class="todo.done === true ? 'text_style' : ''">
-                            {{todo.text}} <i @click="delete_todo(index)" class="fa-solid fa-times-circle"></i>
+                        <li v-for="(todo, index) in todos">
+                          <div :class="todo.done === true ? 'text_style' : ''" >{{todo.text}}</div>   
+                          <i @click="delete_todo(index)" class="fa-solid fa-times-circle"></i>
                         </li>
                     </ul>
                 </div>
             </main>
 
         </div>
-
-
     </div>
 
 
