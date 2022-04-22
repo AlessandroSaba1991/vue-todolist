@@ -64,12 +64,20 @@
 
                     <div class="todo_delete">
 
-                        <h3>Delete</h3>
-                        <ul>
-                            <li>
+                        <div class="cestino">
+                            <h3>Delete</h3>
+                            <a href="#" @click="delete_all">(empty bin)</a>
+                        </div>
 
+                        <ul>
+                            <li v-for="(todo_delete,index) in todos_remove">
+                                <div>{{todo_delete.text}}</div>
+                                <div class="icon">
+                                    <i @click="delete_return(todo_delete,index)" class="fa-solid fa-trash-can-arrow-up"></i>
+                                </div>
                             </li>
                         </ul>
+
                     </div>
 
                 </div>

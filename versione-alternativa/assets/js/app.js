@@ -22,76 +22,89 @@ Consultate la documentazione e se siete bloccati, aprite un ticket.
 - si, l'utente é un rompi scatole, dice infine che vuole poter rimuovere tutte le tasks nel cestino cliccando su un pulsante tipo "svuota cestino"
 Il nostro utente per ora sembra non avere altre richieste ... ma chissá se dopo gli viene in mente che vuole anche poter rimettere una task cancellata nella lista di tasks da fare, magari l'ha cancellata per sbaglio...
 */
-const app = new Vue({ 
-    el: "#app", 
-    data: {
-        todos:[
-            {
-                text:'Cammina',
-                done:true
-            },
-            {
-                text:'Corri',
-                done:true
-            },
-            {
-                text:'Mangia',
-                done:false
-            },
-            {
-                text:'Respira',
-                done:true
-            },
-            {
-                text:'Saluta',
-                done:false
-            },
-            {
-                text:'Rotola',
-                done:false
-            },
-        ],
-        todos_complete:[],
-        todos_remove:[],
-        new_todo:{
-            text:'',
-            done:false
-        }
-    }, 
-    methods: {
-        delete_todo(index){
-            this.todos.splice(index,1)
-        },
-        add_todo(){
-            this.todos.push(this.new_todo)
-            this.new_todo = 
-            {
-                text:'',
-                done:false
-            } 
-
-        },
-        change_done(index){
-            this.todos[index].done = true
-            this.true_false()
-        },
-        todo_return(complete, index){
-            this.todos_complete[index].done = false
-            this.todos.push(complete)
-            this.true_false()
-        },
-        true_false(){
-            this.todos.forEach(todo => {
-                if(todo.done === true){
-                    this.todos_complete.push(todo)
-                    this.todos = this.todos.filter(element => element.done !== true)
-                } else {                    
-                    this.todos_complete = this.todos_complete.filter(element => element.done !== false)
-                }
-            })
-        }
+const app = new Vue({
+  el: "#app",
+  data: {
+    todos: [
+      {
+        text: "Cammina",
+        done: true,
+      },
+      {
+        text: "Corri",
+        done: true,
+      },
+      {
+        text: "Mangia",
+        done: false,
+      },
+      {
+        text: "Respira",
+        done: true,
+      },
+      {
+        text: "Saluta",
+        done: false,
+      },
+      {
+        text: "Rotola",
+        done: false,
+      },
+    ],
+    todos_complete: [],
+    todos_remove: [],
+    todos_invisible: [],
+    new_todo: {
+      text: "",
+      done: false,
     },
-    mounted(){
-        this.true_false()
-    } 
+    answer: "",
+  },
+  methods: {
+    add_todo() {
+      this.todos.push(this.new_todo);
+      this.new_todo = {
+        text: "",
+        done: false,
+      };
+    },
+    delete_todo(index) {
+      this.todos_remove.push(this.todos[index]);
+      this.todos.splice(index, 1);
+    },
+    change_done(index) {
+      this.todos[index].done = true;
+      this.true_false();
+    },
+    todo_return(complete, index) {
+      this.todos_complete[index].done = false;
+      this.todos.push(complete);
+      this.true_false();
+    },
+    delete_return(todo_delete, index) {
+      this.todos.push(todo_delete);
+      this.todos_remove.splice(index, 1);
+    },
+    delete_all() {
+      answer = prompt("Sei sicuro di voler eliminare tutto? y/n");
+      if (answer === "y") {
+        this.todos_remove = [];
+      }
+    },
+    true_false() {
+      this.todos.forEach((todo) => {
+        if (todo.done === true) {
+          this.todos_complete.push(todo);
+          this.todos = this.todos.filter((element) => element.done !== true);
+        } else {
+          this.todos_complete = this.todos_complete.filter(
+            (element) => element.done !== false
+          );
+        }
+      });
+    },
+  },
+  mounted() {
+    this.true_false();
+  },
 });

@@ -67,3 +67,12 @@ ul>li:last-child{
   padding-top: 1rem;
   width: calc(100% / 3);
 }
+
+.cestino>h3{
+  display: inline-block;
+}
+
+.cestino>button{
+  background-color: transparent;
+  border:none
+}
