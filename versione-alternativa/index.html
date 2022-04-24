@@ -36,11 +36,12 @@
                         <h3>Todo-list</h3>
                         <ul v-if="todos.length > 0">
                             <li v-for="(todo, index) in todos">
-                                <input type="text" @keyup.enter="text_modified(todo)" v-model="todo.text">
-                                   
+
+                                <input type="text" @keyup.enter="text_modified(todo)" v-model.trim="todo.text">
+
                                 <div class="icon">
                                     <i class="fa-solid fa-check-circle" @click="change_done(index)"></i>
-                                    <i @click="delete_todo(index)" class="fa-solid fa-times-circle"></i>
+                                    <i @click="delete_todo(index)" class="fa-solid fa-trash"></i>
                                 </div>
                             </li>
                         </ul>
@@ -50,11 +51,12 @@
                     <div v-if="todos_complete.length > 0" class="todo_complete">
 
                         <h3>Complete</h3>
-                        <ul >
+                        <ul>
                             <li v-for="(complete,index) in todos_complete">
                                 <div>{{complete.text}}</div>
                                 <div class="icon">
-                                    <i @click="todo_return(complete,index)" class="fa-solid fa-arrow-rotate-left"></i>
+                                    <i @click="todo_return(index)" class="fa-solid fa-arrow-rotate-left"></i>
+                                    <i @click="delete_todo_complete(index)" class="fa-solid fa-trash"></i>
                                 </div>
                             </li>
                         </ul>
@@ -72,19 +74,20 @@
                             <li v-for="(todo_delete,index) in todos_remove">
                                 <div>{{todo_delete.text}}</div>
                                 <div class="icon">
-                                    <i @click="delete_return(todo_delete,index)" class="fa-solid fa-trash-can-arrow-up"></i>
+                                    <i @click="delete_return(todo_delete,index)"
+                                        class="fa-solid fa-trash-can-arrow-up"></i>
                                 </div>
                             </li>
                         </ul>
 
                     </div>
 
-                    <div v-if="todos_invisible.length > 0" class="recupero">
-                        <a href="#" @click="recupera">
-                            Cliccami per recuperare i todo appena eliminati
-                        </a>
-                    </div>
 
+                </div>
+                <div v-if="todos_invisible.length > 0" class="recupero">
+                    <a href="#" @click="recupera">
+                        Cliccami per recuperare i todo appena eliminati
+                    </a>
                 </div>
             </main>
 

@@ -72,14 +72,19 @@ const app = new Vue({
       this.todos_remove.push(this.todos[index]);
       this.todos.splice(index, 1);
     },
+    delete_todo_complete(index) {
+      this.todos_remove.push(this.todos_complete[index]);
+      this.todos_complete.splice(index, 1);
+    },
     change_done(index) {
       this.todos[index].done = true;
-      this.true_false();
+      this.todos_complete.push(this.todos[index]);
+      this.todos.splice(index, 1);
     },
-    todo_return(complete, index) {
+    todo_return(index) {
       this.todos_complete[index].done = false;
-      this.todos.push(complete);
-      this.true_false();
+      this.todos.push(this.todos_complete[index]);
+      this.todos_complete.splice(index, 1);
     },
     delete_return(todo_delete, index) {
       this.todos.push(todo_delete);
@@ -88,26 +93,22 @@ const app = new Vue({
     delete_all() {
       answer = prompt("Sei sicuro di voler eliminare tutto? y/n");
       if (answer === "y") {
-        this.todos_remove.forEach(element => this.todos_invisible.push(element)) 
+        this.todos_invisible = this.todos_remove;
         this.todos_remove = [];
       }
     },
-    recupera(){
-        this.todos_invisible.forEach(element => this.todos_remove.push(element))
-        this.todos_invisible = [];
+    recupera() {
+      this.todos_remove = this.todos_invisible;
+      this.todos_invisible = [];
     },
-    text_modified(todo){
-        alert(`Task Update! the new task is "${todo.text}"`)
+    text_modified(todo) {
+      alert(`Task Update! the new task is "${todo.text}"`);
     },
     true_false() {
       this.todos.forEach((todo) => {
         if (todo.done === true) {
           this.todos_complete.push(todo);
           this.todos = this.todos.filter((element) => element.done !== true);
-        } else {
-          this.todos_complete = this.todos_complete.filter(
-            (element) => element.done !== false
-          );
         }
       });
     },
